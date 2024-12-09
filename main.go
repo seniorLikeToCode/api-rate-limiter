@@ -36,7 +36,7 @@ func main() {
 	// - Have a capacity of 5 tokens maximum.
 	// - Add one token every 200 milliseconds.
 	// This roughly allowd up to 5 immediate requests, and then replenished one every 200ms.
-	rl := limiter.NewTokenBucket(5, 20*time.Millisecond)
+	rl := limiter.NewTokenBucket(5, 200*time.Millisecond)
 	defer rl.Stop()
 
 	// create a new HTTP server
