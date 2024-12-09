@@ -26,7 +26,7 @@ func rateLimitedHandler(rl limiter.RateLimiter) http.HandlerFunc {
 		}
 
 		// If a token was acquire, proceed with normal request handling.
-		fmt.Println(w, "Request succeeded!")
+		fmt.Fprintln(w, "Request succeeded!")
 	}
 }
 
@@ -36,7 +36,7 @@ func main() {
 	// - Have a capacity of 5 tokens maximum.
 	// - Add one token every 200 milliseconds.
 	// This roughly allowd up to 5 immediate requests, and then replenished one every 200ms.
-	rl := limiter.NewTokenBucket(5, 200*time.Microsecond)
+	rl := limiter.NewTokenBucket(5, 20*time.Millisecond)
 	defer rl.Stop()
 
 	// create a new HTTP server
@@ -50,7 +50,7 @@ func main() {
 		Handler: mux,
 	}
 
-	fmt.Println("Starting server on :8080")
+	fmt.Println("Starting server on :4000")
 	// Start the server. Visit http://localhost:4000 in your browser or use curl:
 	// curl http://localhost:4000
 
