@@ -14,7 +14,7 @@ The **token bucket** algorithm is a commonly used technique for rate limiting. I
 
 This approach allows short bursts up to the bucket's capacity but enforces an overall average rate determined by the token refill interval.
 
-### Leaky Bucket Algorithm (Not Yet Implemented)
+### Leaky Bucket Algorithm
 
 The **leaky bucket** algorithm is another rate limiting strategy:
 

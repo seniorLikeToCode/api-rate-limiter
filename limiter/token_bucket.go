@@ -9,6 +9,7 @@ import (
 
 // Error constant
 var ErrContextTimeout = errors.New("context canceled or timeout before acquiring token")
+var ErrQueueEmpty = errors.New("queue is empty")
 
 // RateLimiter defines the behavior of a rate limiter.
 // We have two main methods:
@@ -32,7 +33,7 @@ type TokenBucket struct {
 	fillInterval time.Duration // Interval at which one token is added back into the bucket.
 	ticker       *time.Ticker  // A ticker that triggers adding tokens at a regular interval.
 	mu           sync.Mutex    // A mutex to ensure safe concurrent access to the bucket state.
-	done         chan struct{} // A channel used to signal goroutine termination when stopping the ;imiter.
+	done         chan struct{} // A channel used to signal goroutine termination when stopping the limiter.
 }
 
 // NewTokenBucket creates and returns a new TokenBucket rate limiter.
